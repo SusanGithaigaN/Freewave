@@ -1,0 +1,17 @@
+{
+  "name": "freewave",
+  "version": "1.0.0",
+  "description": "Nostr-based music player that listens for song commands",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start-listener": "node scripts/listen-and-play-song.mjs",
+    "send-song": "node scripts/send-song-command.mjs"
+  },
+  "keywords": ["nostr", "music", "player", "youtube", "yt-dlp"],
+  "author": "<YOUR_NAME_OR_HANDLE>",
+  "license": "<LICENSE_TYPE>",
+  "dependencies": {
+    "nostr-tools": "^2.17.2"
+  }
+}
