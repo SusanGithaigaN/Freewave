@@ -6,18 +6,17 @@ It’s built for freedom, experimentation, and creativity — turning simple cod
 
 ---
 
-## ✨ Features
+##  Features
 
-- 📡 Listens to Nostr relays for song commands  
-- 🎶 Downloads and plays songs automatically using `yt-dlp` and `mpv`  
-- 🧠 Caches songs locally for faster playback  
-- 🔒 Uses exported private keys (no need to store keys inside the code)  
-- 🧩 Open-source, easy to extend, and community-driven  
-- 💡 Optional hardware integration — LED lights, displays, and buttons  
+-  Listens to Nostr relays for song commands  
+-  Downloads and plays songs automatically using `yt-dlp` and `mpv`  
+-   Caches songs locally for faster playback  
+-  Uses exported private keys (no need to store keys inside the code)  
+-  Open-source, easy to extend, and community-driven  
+-  Optional hardware integration — LED lights, displays, and buttons  
 
----
 
-## 🧠 How It Works
+##  How It Works
 
 FreeWave listens for Nostr events that start with a prefix like:
 
@@ -33,7 +32,7 @@ It’s simple, transparent, and totally open.
 
 ---
 
-## ⚙️ Requirements
+##  Requirements
 
 Before running FreeWave, make sure you have:
 
@@ -46,10 +45,10 @@ Before running FreeWave, make sure you have:
 
 ---
 
-## 📦 Installation Guide
+##  Installation Guide
 
 ### 1️⃣ Clone the Repository
-```bash
+``bash
 git clone https://github.com/<your-username>/FreeWave.git
 cd FreeWave
 
@@ -77,9 +76,9 @@ Download yt-dlp.exe and mpv.exe, and add both to PATH
 
 
 
----
 
-🔑 Exporting Your Keys
+
+ Exporting Your Keys
 
 To protect privacy, FreeWave never stores your keys directly inside the script.
 Instead, export them as environment variables.
@@ -102,9 +101,9 @@ export NOSTR_PRIVKEY_HEX="converted_hex_key_here"
 Now your scripts can access it automatically!
 
 
----
 
-🚀 Usage
+
+ Usage
 
 Send a Song Command
 
@@ -117,9 +116,8 @@ npm run start-listener
 FreeWave will automatically detect your Nostr commands, download, play, and clean up after itself.
 
 
----
 
-🧩 Folder Structure
+ Folder Structure
 
 FreeWave/
 ├── scripts/
@@ -130,31 +128,30 @@ FreeWave/
 └── README.md
 
 
----
 
-🧰 Gadgets & Hardware Setup (Optional)
+
+ Gadgets & Hardware Setup (Optional)
 
 You can go beyond the terminal — build your own FreeWave Node!
 
 Gadget	Purpose / Use
 
-💻 Old Android Phone	Run FreeWave via Termux or Node.js as a portable Nostr node
-🥧 Raspberry Pi (3 or 4)	24/7 listener connected to a speaker or display
-⚙️ Arduino (ESP32 / ESP8266)	Control LEDs, buttons, or visual indicators
-🧠 OLED / LCD Display	Show current track name, artist, or connection status
-🔊 Bluetooth Speaker	Wireless music playback
-🔵 RGB LEDs or Neopixels	Flash, pulse, or animate with the beat
-🧩 Powerbank or UPS	Run your setup off-grid
-🌐 WiFi Dongle / Ethernet	Ensure a stable connection
-🎛️ Buttons / Rotary Knob	Control play, pause, or skip directly
-🔈 Mini Amplifier (PAM8403)	Boost small speaker setups
-🪶 3D-Printed Case	Make your node look like a futuristic jukebox
+ Old Android Phone	Run FreeWave via Termux or Node.js as a portable Nostr node
+ Raspberry Pi (3 or 4)	24/7 listener connected to a speaker or display
+ Arduino (ESP32 / ESP8266)	Control LEDs, buttons, or visual indicators
+ OLED / LCD Display	Show current track name, artist, or connection status
+ Bluetooth Speaker	Wireless music playback
+ RGB LEDs or Neopixels	Flash, pulse, or animate with the beat
+ Powerbank or UPS	Run your setup off-grid
+ WiFi Dongle / Ethernet	Ensure a stable connection
+ Buttons / Rotary Knob	Control play, pause, or skip directly
+ Mini Amplifier (PAM8403)	Boost small speaker setups
+ 3D-Printed Case	Make your node look like a futuristic jukebox
 
 
 
----
 
-🧠 How to Make It Interactive
+ How to Make It Interactive
 
 Want to bring your FreeWave to life?
 
@@ -170,7 +167,7 @@ Your FreeWave becomes a smart, physical music player powered by Nostr!
 
 ---
 
-🛠️ package.json (For Reference)
+ package.json (For Reference)
 
 {
   "name": "freewave",
@@ -191,21 +188,8 @@ Your FreeWave becomes a smart, physical music player powered by Nostr!
 }
 
 
----
 
-⚠️ Notes
-
-Don’t share your private key publicly.
-
-Songs are automatically deleted after playback.
-
-Cached songs are reused to save time and bandwidth.
-
-
-
----
-
-💡 Contributing
+ Contributing
 
 FreeWave is community-built — feel free to fork, open issues, or submit pull requests!
 
@@ -221,19 +205,12 @@ Create themed hardware builds
 
 
 
----
 
-💬 Credits
+Credits
 
 Developed by Martin Arts & contributors
 Powered by Nostr, yt-dlp, and mpv
 
 > “Let the music flow freely across the network — this is the wave of sound, not control.”
 
-
-
-
----
-
-Would you like me to add a **DIY Hardware Build section** next (wiring + commands for ESP32 + LED effects when a song plays)?  
-That would turn FreeWave into a complete open hardware + software ecosystem.
+Your keys your music
