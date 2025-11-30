@@ -174,7 +174,7 @@ try {
 
 `node scripts/listen-and-play-song.mjs`
 
--  The listener automatically downloads the song from YouTube, plays it locally, and deletes it after playback.
+-  The listener automatically downloads the song and plays it locally, and deletes it after playback.
 
 
 
