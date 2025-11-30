@@ -60,37 +60,34 @@ Optional / Recommended
 
 ---
 
-##  Installation Guide
+## Installation Guide
 
-### 1️⃣ Clone the Repository
-``bash
-git clone https://github.com/<your-username>/FreeWave.git
-cd FreeWave
+1️⃣ Clone the Repository
+
+`git clone https://github.com/Codepocketdev/FreeWave.git
+cd FreeWave`
 
 2️⃣ Install Dependencies
 
-npm install
+`npm install`
 
 3️⃣ Install System Tools
 
-Ubuntu / Debian
+Ubuntu / Debian:
 
-sudo apt update
-sudo apt install mpv
-pip install yt-dlp
+`sudo apt update
+sudo apt install mpv python3-pip -y
+pip3 install yt-dlp`
 
-macOS
+macOS:
 
-brew install mpv yt-dlp
+`brew install mpv yt-dlp`
 
-Windows
+Windows:
 
-Install Node.js from nodejs.org
+Install Node.js from nodejs.org.
 
-Download yt-dlp.exe and mpv.exe, and add both to PATH
-
-
-
+Download `yt-dlp.exe` and `mpv.exe` and add both to your PATH.
 
 
  Exporting Your Keys
