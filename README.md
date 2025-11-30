@@ -7,27 +7,37 @@ FreeWave is a lightweight, open-source ,decentralized, peer-to-peer music player
 
 ##  Features
 
--  Listens to Nostr relays for song commands  
--  Downloads and plays songs automatically using `yt-dlp` and `mpv`  
--   Caches songs locally for faster playback  
--  Uses exported private keys (no need to store keys inside the code)  
--  Open-source, easy to extend, and community-driven  
--  Optional hardware integration — LED lights, displays, and buttons  
+-  Listens to Nostr relays for secure, censorship-resistant song commands.
+  
+-  Automatically downloads and plays songs from YouTube using `yt-dlp` and `mpv`.
+ 
+-  Caches recently played songs locally to optimize playback speed.
+
+-  Supports both personal and social listening modes.
+  
+-  Uses exported private keys—no sensitive keys stored directly in the code.
+ 
+-  Fully open-source, extensible, and community-driven.
+  
+-  Privacy-first design ensures user and creator control without centralized intermediaries.
 
 
 ##  How It Works
 
-FreeWave listens for Nostr events that start with a prefix like:
-
+-  FreeWave monitors Nostr events that begin with a command prefix, such as:
+ 
 PLAY_SONG: <song name>
 
-Once received, it automatically:
-1. Finds the song on YouTube.  
-2. Downloads it as an MP3 using `yt-dlp`.  
-3. Plays it locally using `mpv`.  
-4. Deletes it after playback to save space.  
+-  Upon receiving a valid command, it:
+Securely identifies the song on YouTube.
 
-It’s simple, transparent, and totally open.
+-  Downloads the audio as an MP3 using yt-dlp.
+ 
+-  Plays the track locally with mpv, keeping playback private and on-device.
+  
+-  Deletes the file after playback to conserve storage.
+   
+-  All communication is encrypted and decentralized, ensuring censorship-resistant, privacy-first music delivery.
 
 ---
 
