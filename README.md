@@ -1,8 +1,7 @@
 # 🎵 FreeWave  
 **A Nostr-Based Open Music Player**
 
-FreeWave is a lightweight, open-source Nostr music player that listens for song commands sent through Nostr relays — then automatically plays and manages them locally.  
-It’s built for freedom, experimentation, and creativity — turning simple code into a distributed jukebox that anyone can extend, test, or remix.
+FreeWave is a lightweight, open-source ,decentralized, peer-to-peer music player that empowers creators and listeners by removing intermediaries. Leveraging Nostr for event distribution and YouTube for music content, FreeWave delivers a censorship-resistant, privacy-first listening experience. It supports both personal and social modes, ensuring secure playback, creator control, and freedom from reliance on centralized platforms.
 
 ---
 
