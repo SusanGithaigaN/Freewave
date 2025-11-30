@@ -156,34 +156,60 @@ try {
 ---
 
 
- Usage
+## Usage
 
-Send a Song Command
+-  FreeWave provides two modes for playback:
 
-npm run send-song "Blinding Lights by The Weeknd"
+1️⃣ Personal Mode (Terminal)
 
-Start the Listener
+-  This mode is ideal if you want to publish and play songs from a local terminal (Ubuntu, Termux, macOS, etc.).
 
-npm run start-listener
-
-FreeWave will automatically detect your Nostr commands, download, play, and clean up after itself.
+-  Publisher Script – Use this to send a song command:
 
 
+`node scripts/send-song-command.mjs "Song by artist"`
 
- Folder Structure
+-  Listener & Player Script – Use this to receive and play the song locally:
+
+
+`node scripts/listen-and-play-song.mjs`
+
+-  The listener automatically downloads the song from YouTube, plays it locally, and deletes it after playback.
+
+
+
+
+---
+
+2️⃣ Social Mode (Any Nostr Client)
+
+-  This mode allows you to listen to commands sent from a specific Nostr user on a chosen relay. Only new commands from that user are processed, preventing spam.
+
+`node scripts/social-listen-play.mjs <artist_npub> <relay_url>`
+
+
+-  Only commands from the specified npub and relay will be played.
+
+
+
+
+---
+
+Folder Structure
 
 FreeWave/
 ├── scripts/
-│   ├── send-song-command.mjs
-│   └── listen-and-play-song.mjs
+│   ├── send-song-command.mjs       # Personal mode: publisher
+│   ├── listen-and-play-song.mjs   # Personal mode: listener & player
+│   └── social-listen-play.mjs     # Social mode listener
 ├── package.json
 ├── .gitignore
 └── README.md
 
 
+---
 
-
- Gadgets & Hardware Setup (Optional)
+ ## Gadgets & Hardware Setup (Optional)
 
 You can go beyond the terminal — build your own FreeWave Node!
 
