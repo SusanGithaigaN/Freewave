@@ -32,15 +32,23 @@ It’s simple, transparent, and totally open.
 ---
 
 ##  Requirements
-
-Before running FreeWave, make sure you have:
-
-- **Node.js v18+**
-- **npm**
-- **yt-dlp** (YouTube downloader)
-- **mpv** (audio player)
-- **Internet connection**
-- *(Optional)* `pm2` for background running
+To run FreeWave, ensure your environment includes:
+-  Node.js v18+ – FreeWave is written in JavaScript (ES Modules), so you need Node.js to execute it.
+  
+-  npm – Comes with Node.js; needed to install dependencies.
+  
+-  yt-dlp – Command-line tool to fetch songs from YouTube.
+  
+-  mpv – Media player to play the downloaded audio locally.
+  
+-  Internet connection – Required to fetch songs and receive Nostr events.
+ 
+Optional / Recommended
+-  pm2 – To keep FreeWave running in the background continuously.
+  
+-  Speakers or audio output device – Without a way to play audio, the script can’t serve its main purpose.
+  
+- Storage – Enough disk space to temporarily store MP3 files before playback.
 
 ---
 
