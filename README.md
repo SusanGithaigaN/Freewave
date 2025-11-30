@@ -9,7 +9,7 @@ FreeWave is a lightweight, open-source ,decentralized, peer-to-peer music player
 
 -  Listens to Nostr relays for secure, censorship-resistant song commands.
   
--  Automatically downloads and plays songs from YouTube using `yt-dlp` and `mpv`.
+-  Automatically downloads and plays songs using `yt-dlp` and `mpv`.
  
 -  Caches recently played songs locally to optimize playback speed.
 
