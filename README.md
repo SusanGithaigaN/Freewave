@@ -213,7 +213,7 @@ Folder Structure
 
 -  You can take FreeWave beyond the terminal and create your own portable or interactive music node. Here’s how:
 
--  Old Android Phone – Run FreeWave via Termux or Node.js as a portable Nostr node.
+-  Old Android Phone – Run FreeWave via Termux  as a portable Nostr node.
 
 -  Raspberry Pi (3 or 4) – 24/7 listener connected to a speaker or display.
 
