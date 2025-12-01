@@ -101,12 +101,14 @@ node
 
 ``import { nip19 } from "nostr-tools"; const result = nip19.decode("nsec1yourkeyhere"); console.log(Buffer.from(result.data).toString("hex"));``
 
-Then export the result:
+Then export the results:
+
 ``export NOSTR_PRIVKEY_HEX="converted_hex_key_here"``
 
 Using an npub Key
 -  If you only have an npub key, you can decode it to hex using a helper script:
 Create the helper:
+
 ``nano decode-npub.mjs``
 
 Paste the following:
@@ -123,7 +125,7 @@ Now your scripts can access the keys automatically for both personal and social 
 
 ``NOSTR_PRIVATE_KEY=<your_hex_private_key>``
 
-This allows FreeWave to securely access your key and ensures downloaded songs are handled properly, including automatic cleanup if playback is stopped early
+-  This allows FreeWave to securely access your key and ensures downloaded songs are handled properly, including automatic cleanup if playback is stopped early
 ---
 ## Usage
 
