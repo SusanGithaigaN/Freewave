@@ -7,8 +7,8 @@ import path from "path";
 // -------------------------
 // USER INPUT
 // -------------------------
-const ARTIST_NPUB = process.argv[2];   // Artist npub
-const RELAY = process.argv[3];         // Relay URL
+const ARTIST_NPUB = process.argv[2];
+const RELAY = process.argv[3];
 if (!ARTIST_NPUB || !RELAY) {
   console.log("Usage: node social-listen-play.mjs <artist_npub> <relay_url>");
   process.exit(1);
@@ -23,10 +23,33 @@ const DOWNLOAD_DIR = "./songs";
 if (!fs.existsSync(DOWNLOAD_DIR)) fs.mkdirSync(DOWNLOAD_DIR);
 
 // -------------------------
+// CLEANUP HANDLER (Susan fix)
+// -------------------------
+let currentSongFile = null;
+
+function cleanup() {
+  if (currentSongFile && fs.existsSync(currentSongFile)) {
+    try {
+      fs.unlinkSync(currentSongFile);
+      console.log(`🗑️ Cleaned up: ${currentSongFile}`);
+    } catch (err) {
+      console.log("Cleanup error:", err.message);
+    }
+  }
+  process.exit();
+}
+
+process.on("SIGINT", cleanup);
+process.on("SIGTERM", cleanup);
+
+// -------------------------
 // HELPERS
 // -------------------------
 function sanitizeToFilename(name) {
-  const cleaned = name.replace(/^(_?SONG:|PLAY_SONG:)/i, "").replace(/^play\s*/i, "").trim();
+  const cleaned = name
+    .replace(/^(_?SONG:|PLAY_SONG:)/i, "")
+    .replace(/^play\s*/i, "")
+    .trim();
   let safe = cleaned.replace(/[^\w\s-]/gi, "").replace(/\s+/g, "_");
   if (!safe) safe = "song";
   if (safe.length > 60) safe = safe.slice(0, 60);
@@ -43,7 +66,11 @@ function readLastPlayed() {
 }
 
 function writeLastPlayed(eventId, timestamp) {
-  fs.writeFileSync(LAST_PLAYED_FILE, JSON.stringify({ eventId, timestamp }), "utf-8");
+  fs.writeFileSync(
+    LAST_PLAYED_FILE,
+    JSON.stringify({ eventId, timestamp }),
+    "utf-8"
+  );
 }
 
 // -------------------------
@@ -52,27 +79,45 @@ function writeLastPlayed(eventId, timestamp) {
 async function playSong(songName) {
   const base = sanitizeToFilename(songName);
   const mp3File = path.join(DOWNLOAD_DIR, `${base}.mp3`);
+  currentSongFile = mp3File; // Track for cleanup
 
   try {
+    // -------------------------
+    // DOWNLOAD SONG (patched)
+    // -------------------------
     if (!fs.existsSync(mp3File)) {
       console.log(`⬇️ Downloading: ${songName}`);
-      const ytdlpCmd = `yt-dlp -x --audio-format mp3 --no-playlist "ytsearch1:${songName}" -o "${path.join(DOWNLOAD_DIR, base)}.%(ext)s"`;
-      execSync(ytdlpCmd, { stdio: "inherit" });
+
+      const cmd = `yt-dlp --force-overwrite --no-part -x --audio-format mp3 --no-playlist "ytsearch1:${songName}" -o "${path.join(
+        DOWNLOAD_DIR,
+        base
+      )}.%(ext)s"`;
+
+      execSync(cmd, { stdio: "inherit" });
 
       if (!fs.existsSync(mp3File)) {
         console.warn(`⚠️ Could not download: ${mp3File}`);
         return;
       }
+
       console.log(`✅ Download complete: ${mp3File}`);
     } else {
       console.log(`✅ Cached file found: ${mp3File}`);
     }
 
+    // -------------------------
+    // PLAY SONG
+    // -------------------------
     console.log(`🎧 Playing: ${songName}`);
     execSync(`mpv --no-video "${mp3File}"`, { stdio: "inherit" });
+
     console.log(`🏁 Finished: ${songName}`);
 
+    // -------------------------
+    // DELETE AFTER PLAYBACK
+    // -------------------------
     fs.unlinkSync(mp3File);
+    currentSongFile = null;
     console.log(`🗑️ Deleted: ${mp3File}`);
   } catch (err) {
     console.error("❌ Error:", err.message || err);
@@ -87,7 +132,6 @@ const pool = new SimplePool();
 const filter = { kinds: [1], authors: [ARTIST_NPUB] };
 
 const lastPlayed = readLastPlayed();
-const lastId = lastPlayed?.eventId || null;
 const lastTimestamp = lastPlayed?.timestamp || 0;
 
 console.log(`🎯 Listening for artist: ${ARTIST_NPUB}`);
@@ -100,9 +144,8 @@ pool.subscribeMany(relays, filter, {
     const content = event.content?.trim() || "";
     if (!content.toLowerCase().startsWith("play")) return;
 
-    // Skip if older than last timestamp
     if (event.created_at <= lastTimestamp) {
-      console.log(`⚠️ Event older than last processed. Skipping: ${event.id}`);
+      console.log(`⚠️ Old event, skipping: ${event.id}`);
       return;
     }
 
@@ -114,14 +157,14 @@ pool.subscribeMany(relays, filter, {
     (async () => {
       await playSong(songName);
       writeLastPlayed(event.id, event.created_at);
-      console.log("📭 Done. Exiting after latest song.");
+      console.log("📭 Done. Exiting...");
       process.exit(0);
     })();
   },
 
   onclose(reason) {
     console.log("🔌 Connection closed:", reason);
-    console.log("📡 Attempting to reconnect in 5s...");
+    console.log("📡 Reconnecting in 5s...");
     setTimeout(() => {
       pool.subscribeMany(relays, filter, this);
     }, 5000);
