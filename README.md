@@ -121,7 +121,7 @@ Now your scripts can access the keys automatically for both personal and social 
 
 ---
 ## Create .env File
--  Create a .env file in the project root and add your NOSTR private key:
+-  Create a `.env` file in the project root and add your NOSTR private key:
 
 ``NOSTR_PRIVATE_KEY=<your_hex_private_key>``
 
